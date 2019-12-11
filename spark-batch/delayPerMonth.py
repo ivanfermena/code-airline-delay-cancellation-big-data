@@ -17,10 +17,10 @@ df = sqlContext.read.load("2009-2018.csv",
 df.registerTempTable("df")
 
 results = sqlContext.sql("""
-    SELECT YEAR(FL_DATE) as Year, MONTH(FL_DATE) as Month, COUNT(FL_DATE) as Cancelations
+    SELECT MONTH(FL_DATE) as Month, COUNT(FL_DATE) as Delays
     FROM df
     WHERE CANCELLED = 1.0
-    GROUP BY YEAR(FL_DATE), MONTH(FL_DATE)
+    GROUP BY MONTH(FL_DATE)
     ORDER BY Month DESC
 """)
 
